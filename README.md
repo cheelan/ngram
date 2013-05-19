@@ -4,9 +4,9 @@ ngram
 Overview
 -----
 Ngram models are simple yet powerful tools in the field of Natural Language Processing. An Ngram is an N-token sequence of words. For example, the sentence "natural language processing is great" has the 2-grams (also known as bigrams):
-'''
-["natural language", "language processing", "processing is", "is great"]
-'''
+
+    ["natural language", "language processing", "processing is", "is great"]
+
 
 Perplexity
 ----
