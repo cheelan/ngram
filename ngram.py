@@ -60,8 +60,7 @@ class Ngram:
     #text: regular text
     #model: the n-gram model of choice
     #n: the n in n-gram
-    #output: a score proportional to the probability of the sentence coming from that model
-    #Handling unknowns... hmmm
+    #output: a score proportional to the probability of text coming from this model
     def getPerplexity(self, text):
         p = 1.0
         lst = list()
