@@ -19,10 +19,17 @@ If a test sentence closely resembles one in the model, it should have a low perp
 Usage Examples
 ----
 <b>Training Ngrams</b>
+
     myNgram = ngram.Ngram(n, list_of_tokens, smoothingBound)
 <b>n:</b> The length of each ngram (1 = unigram, 2 = bigram, etc)
 <br /><b>list of tokens:</b> A training list where each element is one token in the ngram. For instance, if you wanted to generate character ngrams, you would pass in list("These are some words").
 <br /><b>smoothingBound:</b> Smooths any ngram appearing below smoothingBound times in the model using Good Turing smoothing.
 
 <b>Getting Perplexity</b>
+
     myNgram.getPerplexity(list_of_tokens)
+    
+To Do
+----
++ Clean up code. All of this stuff was written under time pressure, so there are probably some hacky things in there. Also, several project-specific features were hastily removed, so there might be some unused variables and such in the present code.
++ SVM Formatting
