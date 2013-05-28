@@ -7,8 +7,8 @@ class TestSequenceFunctions(unittest.TestCase):
         
         self.apple_gram = ngram.Ngram(2, ["apple", "ate", "an", "apple", "ate"], 1)
         print(str(self.apple_gram.dictionary))
-        print(str(self.apple_gram.getPerplexity(["apple", "ate", "a", "cat"])))
-        print(str(self.apple_gram.getPerplexity(["orange", "grape", "lemon", "tomato"])))
+        print(str(self.apple_gram.get_perplexity(["apple", "ate", "a", "cat"])))
+        print(str(self.apple_gram.get_perplexity(["orange", "grape", "lemon", "tomato"])))
 
     def test_count(self):
         self.assertEqual(2, self.apple_gram.get_count(["apple", "ate"]))
