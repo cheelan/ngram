@@ -16,6 +16,10 @@ Smoothing
 ----
 If a test sentence closely resembles one in the model, it should have a low perplexity. However, if that sentence contains just one ngram that was never seen in the model, it will have a probability of zero, and thus an infinite perplexity. Therefore, it is common to use a smoothing function to assign some positive probability to unseen ngrams. This program uses the Good-Turing smoothing model.
 
+What's this good for?
+----
+Ngram models are extremely versatile. Out of the box, the "perplexity" feature can be used to measure the similarity between a sequence of words and an overall model. This can be used for spam detection, sentiment classification (is a body of text, such as a review, positive, negative, or neutral), or even detecting deception. One can go beyond perplexity, and use Ngrams with Support Vector Machines, a machine learning classification tool.
+
 Usage Examples
 ----
 <b>Training Ngrams</b>
