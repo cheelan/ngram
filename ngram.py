@@ -31,7 +31,6 @@ class Ngram:
                 self.dictionary[key] += 1
             else:
                 self.dictionary[key] = 1
-                self.unique_words += 1
                 unique_ngrams += 1
 
             # Keeping track of counts in the countList
@@ -61,35 +60,37 @@ class Ngram:
     #model: the n-gram model of choice
     #n: the n in n-gram
     #output: a score proportional to the probability of text coming from this model
-    def getPerplexity(self, text):
+    #The ngram model should have some smoothing, otherwise sentences with unknown ngrams will have infinite perplexity
+    def get_perplexity(self, text):
         p = 1.0
         lst = list()
         length = 0
         for word in text:
             length += 1
-            #Maintain queue of n most recent words
+            #Maintain queue of n most recent tokens
             lst.append(word) 
             if len(lst) < self.n:
                 continue
             while len(lst) > self.n:
                 lst.pop(0)
             key = str(lst)
-            #Need to adjust these for unknown words
+            #Need to smooth for unseen ngrams
             if self.smoothing_bound > 0:
                 zero_count = float(self.count_list[1]) / float(self.count_list[0])
             else:
                 zero_count = 0
+
             numerator = 0.
             denominator = 0.
-
+            #look up difference between total grams and unique words
             if not (key in self.dictionary):
                 numerator = zero_count
                 denominator = self.total_grams + (zero_count * self.count_list[0])
-            elif key in self.dictionary:
-                i = 0
+            else:
                 numerator = self.dictionary[key]
                 denominator += self.dictionary[key]
-                denominator += float(self.unique_words - i) * zero_count
+                denominator += float(self.unique_words) * zero_count
+            #Need to use logs or else we'll have some major underflow
             p += math.log10(denominator / numerator)
         return 10**(p * (1. / float(length)))   
 

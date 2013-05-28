@@ -32,4 +32,3 @@ Usage Examples
 To Do
 ----
 + Clean up code. All of this stuff was written under time pressure, so there are probably some hacky things in there. Also, several project-specific features were hastily removed, so there might be some unused variables and such in the present code.
-+ SVM Formatting
