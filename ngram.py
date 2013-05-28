@@ -80,18 +80,23 @@ class Ngram:
             else:
                 zero_count = 0
 
-            numerator = 0.
             denominator = 0.
+            numerator = 0.
             #look up difference between total grams and unique words
             if not (key in self.dictionary):
-                numerator = zero_count
-                denominator = self.total_grams + (zero_count * self.count_list[0])
+                denominator = zero_count
+                numerator = self.total_grams + (zero_count * self.count_list[0])
             else:
-                numerator = self.dictionary[key]
-                denominator += self.dictionary[key]
-                denominator += float(self.unique_words) * zero_count
+                denominator = self.dictionary[key]
+                numerator += self.dictionary[key]
+                numerator += float(self.unique_words) * zero_count
+            #If the denominator is 0, then a ngram was encountered exactly zero times. 
+            #This won't happen with smoothing enabled.
+            #If it does happen, then the sequence has infinite perplexity
+            if denominator == 0:
+                return float("inf")
             #Need to use logs or else we'll have some major underflow
-            p += math.log10(denominator / numerator)
+            p += math.log10(numerator / denominator)
         return 10**(p * (1. / float(length)))   
 
     def get_count(self, gram):
