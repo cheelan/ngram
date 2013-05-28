@@ -6,12 +6,15 @@ class Ngram:
     #text: a text corpus to model
     #smoothingBound: smooth all words that appear less than the smoothingBound (with Good Turing smoothing)
     #Returns a dictionary with keys that strings representing lists of words, and values that are counts
+    #To-do: Split this into more modular functions.
     def __init__(self, n, text, smoothingBound ):
         self.n = n
         self.total_grams = 0
         self.unique_words = 0
         self.dictionary = {}
         self.smoothing_bound = smoothingBound
+        #count_list is an array containing the counts of low frequency ngrams
+        #for example, count_list[1] contains the number of unique ngrams that appear exactly 1 time
         self.count_list= [0]*(self.smoothing_bound + 1)
         unique_ngrams = 0
         self.vocab = set()
@@ -33,7 +36,7 @@ class Ngram:
                 self.dictionary[key] = 1
                 unique_ngrams += 1
 
-            # Keeping track of counts in the countList
+            # Keeping track of counts for low-frequency words
             if (self.smoothing_bound > 0):
                 count = self.dictionary[key]
                 if count > 1 and count <= (self.smoothing_bound+1):
