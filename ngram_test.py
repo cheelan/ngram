@@ -18,6 +18,7 @@ class TestSequenceFunctions(unittest.TestCase):
     #To-do: A more comprehensive test. This one is more like a sanity check.
     def test_perplexity(self):
         self.assertLess(self.apple_gram.get_perplexity(["apple", "ate", "a", "cat"]), self.apple_gram.get_perplexity(["orange", "grape", "lemon", "tomato"]))
+        #To-do: A similar sanity check for models trained on two different large corpora could be interesting and useful to users
 
 if __name__ == '__main__':
     unittest.main()
